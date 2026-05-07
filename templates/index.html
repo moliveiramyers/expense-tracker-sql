@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>💰 Expense Tracker</h1>
+
+    <form action="/add" method="POST">
+        <input name="title" placeholder="Title" required>
+        <input name="amount" type="number" step="0.01" placeholder="Amount" required>
+        <input name="category" placeholder="Category">
+        <input name="date" type="date" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <hr>
+
+    <h2>Expenses</h2>
+
+    <ul>
+        {% for e in expenses %}
+        <li>
+            {{ e[1] }} - €{{ e[2] }} - {{ e[3] }} - {{ e[4] }}
+            <a href="/delete/{{ e[0] }}">❌</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+</html>
