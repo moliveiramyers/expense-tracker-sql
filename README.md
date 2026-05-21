@@ -8,6 +8,8 @@ The system also includes real-time editing of expenses directly from the table i
 
 The purpose of this project is to strengthen my skills in backend development, database design, and frontend integration while building a practical and usable financial tracking tool.
 
+The database was improved by normalizing the structure into two related tables (expenses and categories) using foreign keys and SQL JOIN operations to ensure better data organization and consistency.
+
 [Software Demo Video](http://youtube.link.goes.here)
 
 ---
