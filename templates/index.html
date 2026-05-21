@@ -40,18 +40,14 @@
         <form action="/add" method="POST">
             <input name="title" placeholder="Expense title" required>
             <input name="amount" type="number" step="0.01" placeholder="Amount" required>
-            <select name="category" required>
+            <select name="category_id" required>
                 <option value="">Select category</option>
-                <option value="Groceries">🛒 Groceries</option>
-                <option value="House Bills">💸 House Bills</option>
-                <option value="Restaurants">🍽 Restaurants</option>
-                <option value="Transport">🚆 Transport</option>
-                <option value="Rent">🏠 Rent</option>
-                <option value="Education">🎓 Education</option>
-                <option value="Shopping">🛍 Shopping</option>
-                <option value="Leisure">🎮 Leisure</option>
-                <option value="Health">💊 Health</option>
-                <option value="Other">📦 Other</option>
+
+                {% for c in categories %}
+                <option value="{{ c[0] }}">
+                    {{ c[1] }}
+                </option>
+                {% endfor %}
             </select>
             <input name="date" type="date" required>
             <button type="submit">Add Expense</button>
@@ -81,8 +77,22 @@
             <tr id="row--{{ e[0] }}">
                 <td><input value="{{ e[1] }}" id="title-{{ e[0] }}"></td>
                 <td><input value="{{ e[2] }}" id="amount-{{ e[0] }}"></td>
-                <td><input value="{{ e[3] }}" id="category-{{ e[0] }}"></td>
-                <td><input value="{{ e[4] }}" id="date-{{ e[0] }}"></td>
+                <td>
+                    <select id="category-{{ e[0] }}">
+
+                        {% for c in categories %}
+                        <option value="{{ c[1] }}" {% if c[1]==e[3] %}selected{% endif %}>
+                            {{ c[1] }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+                </td>
+
+                <!-- DATE INPUT correto -->
+                <td>
+                    <input type="date" value="{{ e[4] }}" id="date-{{ e[0] }}">
+                </td>
 
                 <td>
                     <button type="button" class="save-expense" data-expense-id="{{ e[0] }}" aria-label="Save expense">
